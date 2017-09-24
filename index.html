@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Train HM</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Link to jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Google Font Link -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <!-- Link to CSS File -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Link to Firebase JS File -->
+    <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+    <!-- Link to Moment.js should go here -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<body>
+<div class="container">
+    <div class="jumbotron black">
+        <h1>Train Schedule</h1>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading black">
+            <h3 class="panel-title white">Current Train Schedule</h3>
+        </div>
+        <div class="panel-body">
+            <table id="arrival-table" class="table">
+                <thead>
+                    <tbody id="arrival-table-body">
+                        <tr>
+                            <th>Train Name</th>
+                            <th>Destination</th>
+                            <th>Frequency</th>
+                            <th>Next Arrival</th>
+                            <th>Minutes Away</th>
+                        </tr>
+                    </tbody>
+                </thead>
+                <tbody id="input-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading black">
+            <h3 class="panel-title white">Add Train</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label>Train Name</label>
+                <input id="name-input" type="text" class="form-control" placeholder="Name">
+                <br>
+                <label>Destination</label>
+                <input id="destination-input" type="text" class="form-control" placeholder="Destination">
+                <br>
+                <label>First Train Time - Military Time</label>
+                <input id="first-time-input" type="text" class="form-control" placeholder="13:00">
+                <br>
+                <label>Frequency</label>
+                <input id="frequency-input" type="number" class="form-control" placeholder="Frequency">
+                <br>
+                <input id="add-train" class="btn btn-default black" type="submit" value="Submit">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Link to JS File -->
+<script src="app.js"></script>
+</body>
+</html>

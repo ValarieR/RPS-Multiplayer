@@ -1,0 +1,13 @@
+.panel-default > .black {
+	background-color: black;
+	color: white;
+}
+
+.black {
+	background-color: black;
+	color: white;
+}
+
+body {
+	font-family: 'Playfair Display', serif;
+}

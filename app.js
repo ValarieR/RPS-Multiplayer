@@ -26,13 +26,13 @@ $(document).ready(function () {
 
 
 // Function to enable military time
-$(function () {
-    $('#first-time-input').datetimepicker({
-         format: 'HH:mm',
-         use24hours: true,
-    });
+// $(function () {
+//     $('#first-time-input').datetimepicker({
+//          format: 'HH:mm',
+//          use24hours: true,
+//     });
 
-});
+// });
 
 
 // Function for submit button
@@ -51,6 +51,30 @@ $(function () {
 		console.log(destination);
 		console.log(firstTime);
 		console.log(frequency);
+
+	// Firebase Info
+		database.ref().push({
+			name: name,
+			destination: destination,
+			firstTime: firstTime,
+			frequency: frequency,
+			dateAdded: firebase.database.ServerValue.TIMESTAMP
+	// CLose of Firebase Info
+		});
+
+
+	// Clear previous inputs
+		function clearFields() {
+			$("name-input").val("");
+			$("destination-input").val("");
+			$("first-time-input").val("");
+			$("frequency-input").val("");
+		}
+
+	clearFields();
+
+	
+
 
 
 // Closing of on click 

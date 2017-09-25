@@ -46,10 +46,10 @@ $(document).ready(function() {
         event.preventDefault();
 
         // Define some variables
-        name = $("name-input").val();
-        destination = $("destination-input").val();
-        firstTime = $("first-time-input").val();
-        frequency = $("frequency-input").val();
+        name = $("#name-input").val();
+        destination = $("#destination-input").val();
+        firstTime = $("#first-time-input").val();
+        frequency = $("#frequency-input").val();
 
         // logs to be sure the above worked
         console.log(name);
@@ -70,28 +70,27 @@ $(document).ready(function() {
 
         // Clear previous inputs
         function clearFields() {
-            $("name-input").val("");
-            $("destination-input").val("");
-            $("first-time-input").val("");
-            $("frequency-input").val("");
+            $(".form-control").val("");
         }
 
         clearFields();
+        nextArrivalTime();
+        minutesAway();
 
         // Closing of on click 
     });
 
     // Function to calc Next Arrival
     	function nextArrivalTime() {
-    		nextArrival = firstTime + frequency;
-
+    		nextArrival = moment.add(firstTime + frequency);
     		console.log(nextArrival);
     	}
 
 
     // Function to calc Minutes away
     	function minutesAway() {
-
+    		minutesAway = nextArrival - rightNow;
+    		console.log(minutesAway);
     	}
 
 
@@ -102,8 +101,6 @@ $(document).ready(function() {
 
     	sv = snapshot.val();
     	console.log(sv);
-
-
 
     // Closing of Firebase data add function
     })

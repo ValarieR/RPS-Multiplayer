@@ -46,10 +46,10 @@ $(document).ready(function() {
         event.preventDefault();
 
         // Define some variables
-        name = $("name-input").val().trim();
-        destination = $("destination-input").val().trim();
-        firstTime = $("first-time-input").val().trim();
-        frequency = $("frequency-input").val().trim();
+        name = $("name-input").val();
+        destination = $("destination-input").val();
+        firstTime = $("first-time-input").val();
+        frequency = $("frequency-input").val();
 
         // logs to be sure the above worked
         console.log(name);
@@ -64,7 +64,7 @@ $(document).ready(function() {
             firstTime: firstTime,
             frequency: frequency,
             dateAdded: firebase.database.ServerValue.TIMESTAMP
-            // CLose of Firebase Info
+            // Close of Firebase Info
         });
 
 
@@ -83,7 +83,9 @@ $(document).ready(function() {
 
     // Function to calc Next Arrival
     	function nextArrivalTime() {
-    		nextArrival = firstTime
+    		nextArrival = firstTime + frequency;
+
+    		console.log(nextArrival);
     	}
 
 
@@ -93,25 +95,7 @@ $(document).ready(function() {
     	}
 
 
-	// First Time (pushed back 1 month to make sure it comes before current time)
-    var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "months");
-    console.log(firstTimeConverted);
-
-    // Difference between the times
-    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-    console.log("DIFFERENCE IN TIME: " + diffTime);
-
-    // Time apart (remainder)
-    var tRemainder = diffTime % Frequency;
-    console.log(tRemainder);
-
-    // Minute Until Train
-    var tMinutesTillTrain = Frequency - tRemainder;
-    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
-
-    // Next Train
-    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+	
 
     // Function to add all the data to Firebase
     database.ref().orderByChild("dateAdded").limitToLast(8).on("child_added", function(snapshot) {

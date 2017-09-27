@@ -21,8 +21,14 @@ $(document).ready(function() {
     var firstTime;
     var frequency;
 
-    var nextArrival;
-    var minsAway;
+    var firstTimeConvert = moment(firstTime, "HH:mm").subtract(1, "y");
+    var minsAway = moment().diff(moment(firstTimeConvert), "minutes");
+
+    console.log("First Train Time: " + firstTimeConvert);
+    console.log("Next Train: " + minsAway);
+
+    var nextArrival = moment().add(minsAway, "minutes");
+    console.log();
 
     var sv;
     var rightNow = moment();
@@ -46,10 +52,11 @@ $(document).ready(function() {
         event.preventDefault();
 
         // Define some variables
-        name = $("#name-input").val();
-        destination = $("#destination-input").val();
-        firstTime = $("#first-time-input").val();
-        frequency = $("#frequency-input").val();
+        name = $("#name-input").val().trim();
+        destination = $("#destination-input").val().trim();
+        firstTime = $("#first-time-input").val().trim();
+        frequency = $("#frequency-input").val().trim();
+
 
         // logs to be sure the above worked
         console.log(name);
@@ -82,8 +89,8 @@ $(document).ready(function() {
 
     // Function to calc Next Arrival
     	function nextArrivalTime() {
-    		nextArrival = moment.add(firstTime + frequency);
-    		console.log(nextArrival);
+
+
     	}
 
 

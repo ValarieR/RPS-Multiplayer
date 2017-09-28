@@ -21,16 +21,17 @@ $(document).ready(function() {
     var firstTime;
     var frequency;
 
-    var firstTimeConvert = moment(firstTime, "HH:mm").subtract(1, "y");
+    var firstTimeConvert = moment(sv.firstTime, "HH:mm");
     var minsAway = moment().diff(moment(firstTimeConvert), "minutes");
+    var tRemain = minsAway % sv.frequency;
 
     console.log("First Train Time: " + firstTimeConvert);
     console.log("Next Train: " + minsAway);
 
     var nextArrival = moment().add(minsAway, "minutes");
-    console.log();
+    console.log("Next Arrival: " + nextArrival);
 
-    var sv;
+    var sv = snapshot.val();
     var rightNow = moment();
 
     console.log("CURRENT TIME: " + moment(rightNow).format("hh:mm"));
@@ -87,19 +88,6 @@ $(document).ready(function() {
         // Closing of on click 
     });
 
-    // Function to calc Next Arrival
-    	function nextArrivalTime() {
-
-
-    	}
-
-
-    // Function to calc Minutes away
-    	function minutesAway() {
-    		minutesAway = nextArrival - rightNow;
-    		console.log(minutesAway);
-    	}
-
 
 	
 
@@ -108,6 +96,31 @@ $(document).ready(function() {
 
     	sv = snapshot.val();
     	console.log(sv);
+
+    	// Function to calc Next Arrival
+    	function nextArrivalTime() {
+    		if (moment(rightNow).isBefore(firstTimeConvert)) {
+    			nextArrival = moment(sv.firstTime, "minutes");
+    			console.log(nextArrival);
+    			minsAway = moment().diff(moment(firstTimeConvert), "minutes");
+    			console.log(minsAway);
+    		}
+    		else {
+    			tRemain = minsAway % sv.frequency;
+    			console.log(tRemain);
+    			minsAway = sv.frequency - tRemain;
+    			console.log(minsAway);
+    			nextArrival = moment().add(minsAway, "minutes");
+    			console.log(nextArrival);
+    		}
+
+    	};
+
+
+	// Functions for populating the table
+		
+
+
 
     // Closing of Firebase data add function
     })

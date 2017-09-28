@@ -66,7 +66,7 @@ $(document).ready(function() {
         console.log(frequency);
 
         // Firebase Info
-        database.ref().push({
+        database.ref('/Trains').push({
             name: name,
             destination: destination,
             firstTime: firstTime,
@@ -101,8 +101,14 @@ $(document).ready(function() {
     	function nextArrivalTime() {
 
     		firstTimeConvert = moment(sv.firstTime, "HH:mm");
+    		console.log(firstTimeConvert);
+
     		minsAway = moment().diff(moment(firstTimeConvert), "minutes");
+    		console.log(minsAway);
+
     		tRemain = minsAway % sv.frequency;
+    		console.log(tRemain);
+
     		nextArrival = moment().add(minsAway, "minutes");
     			console.log("Next Arrival: " + nextArrival);
 
@@ -139,6 +145,7 @@ $(document).ready(function() {
         tTd.append(sv.destination);
         tTr.append(tTd);
         console.log(sv.destination);
+        nextArrivalTime();
 
         tTd = $("<td>");
         tTd.append(sv.frequency);

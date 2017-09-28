@@ -143,7 +143,7 @@ $(document).ready(function() {
         tTd = $("<td>");
         tTd.append(sv.frequency);
         tTr.append(tTd);
-        console.log(frequency);
+        console.log(sv.frequency);
 
         tTd = $("<td>");
         tTd.append(moment(nextArrival).format("hh:mm A"));

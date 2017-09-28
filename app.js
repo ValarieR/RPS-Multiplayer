@@ -151,8 +151,8 @@ $(document).ready(function() {
 
 
 
-    // Closing of Firebase data add function
-    })
+    // // Closing of Firebase data add function
+    // })
 
     // Closing of doc ready
 });

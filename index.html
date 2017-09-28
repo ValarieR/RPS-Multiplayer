@@ -17,10 +17,7 @@
     <!-- Link to Moment.js -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 <body>
-<div class="container">
-    <div class="jumbotron black">
-        <h2>Train Schedule</h2>
-    </div>
+<div id="main-cont" class="container">
     <div class="panel panel-default">
         <div class="panel-heading black">
             <h3 class="panel-title white">Current Train Schedule</h3>
@@ -58,7 +55,7 @@
                 <input id="first-time-input" type="time" class="form-control" placeholder="13:00">
                 <br>
                 <label>Frequency</label>
-                <input id="frequency-input" type="number" class="form-control" placeholder="Frequency">
+                <input id="frequency-input" type="number" class="form-control" placeholder="Frequency, in Minutes">
                 <br>
                 <input id="add-train" class="btn btn-default black" type="submit" value="Submit">
             </div>

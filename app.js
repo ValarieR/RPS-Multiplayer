@@ -25,26 +25,12 @@ $(document).ready(function() {
     var minsAway;
     var tRemain;
 
-    // console.log("First Train Time: " + firstTimeConvert);
-    // console.log("Next Train: " + minsAway);
-
     var nextArrival;
-    //console.log("Next Arrival: " + nextArrival);
 
     var sv;
     var rightNow = moment();
 
-    console.log("CURRENT TIME: " + moment(rightNow).format("hh:mm"));
-
-
-    // Function to enable military time
-    // $(function () {
-    //     $('#first-time-input').datetimepicker({
-    //          format: 'HH:mm',
-    //          use24hours: true,
-    //     });
-
-    // });
+    console.log("CURRENT TIME IS: " + moment(rightNow).format("hh:mm"));
 
 
     // Function for submit button
@@ -60,10 +46,10 @@ $(document).ready(function() {
 
 
         // logs to be sure the above worked
-        console.log(name);
-        console.log(destination);
-        console.log(firstTime);
-        console.log(frequency);
+        console.log("Train: " + name);
+        console.log("Dest: " + destination);
+        console.log("First Depart: " + firstTime);
+        console.log("How Often: " + frequency);
 
         // Firebase Info
         database.ref('/Trains').push({
@@ -72,7 +58,7 @@ $(document).ready(function() {
             firstTime: firstTime,
             frequency: frequency,
             dateAdded: firebase.database.ServerValue.TIMESTAMP
-            // Close of Firebase Info
+        // Close of Firebase Info
         });
 
 
@@ -82,8 +68,6 @@ $(document).ready(function() {
         }
 
         clearFields();
-        // nextArrivalTime();
-        // minutesAway();
 
         // Closing of on click 
     });
@@ -92,7 +76,7 @@ $(document).ready(function() {
 	
 
     // Function to add all the data to Firebase
-    database.ref().orderByChild("dateAdded").limitToLast(8).on("child_added", function(snapshot) {
+    database.ref('/Trains').orderByChild("dateAdded").limitToLast(3).on("child_added", function(snapshot) {
 
     	sv = snapshot.val();
     	console.log(sv);
@@ -101,35 +85,31 @@ $(document).ready(function() {
     	function nextArrivalTime() {
 
     		firstTimeConvert = moment(sv.firstTime, "HH:mm");
-    		console.log(firstTimeConvert);
+    		console.log("Converted Time: " + firstTimeConvert);
 
     		minsAway = moment().diff(moment(firstTimeConvert), "minutes");
-    		console.log(minsAway);
+    		console.log("Mins Away: " + minsAway);
 
     		tRemain = minsAway % sv.frequency;
-    		console.log(tRemain);
+    		console.log("Time Remaining: " + tRemain);
 
     		nextArrival = moment().add(minsAway, "minutes");
     			console.log("Next Arrival: " + nextArrival);
 
     		if (moment(rightNow).isBefore(firstTimeConvert)) {
     			nextArrival = moment(sv.firstTime, "minutes");
-    			console.log(nextArrival);
+    			console.log("Next Arr: " + nextArrival);
     			minsAway = moment().diff(moment(firstTimeConvert), "minutes");
-    			console.log(minsAway);
+    			console.log("Mins Away Calc: " + minsAway);
     		}
     		else {
     			tRemain = minsAway % sv.frequency;
-    			console.log(tRemain);
+    			console.log("Time Re Calc: " + tRemain);
     			minsAway = sv.frequency - tRemain;
-    			console.log(minsAway);
+    			console.log("Mins Away: " + minsAway);
     			nextArrival = moment().add(minsAway, "minutes");
-    			console.log(nextArrival);
+    			console.log("Next Arr Calc: " + nextArrival);
     		}
-
-    		console.log("First Train Time: " + firstTimeConvert);
-    		console.log("Next Train: " + minsAway);
-
     	}
 
 
@@ -165,11 +145,6 @@ $(document).ready(function() {
         //Append New rows to employee tables body
         $("#input-table-body").append(tTr);
     });
-
-
-
-    // // Closing of Firebase data add function
-    // })
 
     // Closing of doc ready
 });

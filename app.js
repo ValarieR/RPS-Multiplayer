@@ -114,11 +114,40 @@ $(document).ready(function() {
     			console.log(nextArrival);
     		}
 
-    	};
+    	}
 
 
 	// Functions for populating the table
-		
+		var tTr = $("<tr>");
+
+        var tTd = $("<td>");
+        tTd.append(sv.name);
+        tTr.append(tTd);
+        console.log(sv.name);
+
+        tTd = $("<td>");
+        tTd.append(sv.destination);
+        tTr.append(tTd);
+        console.log(sv.destination);
+
+        tTd = $("<td>");
+        tTd.append(sv.frequency);
+        tTr.append(tTd);
+        console.log(frequency);
+
+        tTd = $("<td>");
+        tTd.append(moment(nextArrival).format("hh:mm A"));
+        tTr.append(tTd);
+        console.log(nextArrival);
+
+        tTd = $("<td>");
+        tTd.append(minsAway);
+        tTr.append(tTd);
+        console.log(minsAway);
+
+        //Append New rows to employee tables body
+        $("#input-table-body").append(tTr);
+    });
 
 
 

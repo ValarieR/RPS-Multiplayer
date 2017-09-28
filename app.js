@@ -100,10 +100,10 @@ $(document).ready(function() {
     	// Function to calc Next Arrival
     	function nextArrivalTime() {
 
-    		var firstTimeConvert = moment(sv.firstTime, "HH:mm");
-    		var minsAway = moment().diff(moment(firstTimeConvert), "minutes");
-    		var tRemain = minsAway % sv.frequency;
-    		var nextArrival = moment().add(minsAway, "minutes");
+    		firstTimeConvert = moment(sv.firstTime, "HH:mm");
+    		minsAway = moment().diff(moment(firstTimeConvert), "minutes");
+    		tRemain = minsAway % sv.frequency;
+    		nextArrival = moment().add(minsAway, "minutes");
     			console.log("Next Arrival: " + nextArrival);
 
     		if (moment(rightNow).isBefore(firstTimeConvert)) {

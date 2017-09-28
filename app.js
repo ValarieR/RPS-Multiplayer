@@ -21,17 +21,17 @@ $(document).ready(function() {
     var firstTime;
     var frequency;
 
-    var firstTimeConvert = moment(sv.firstTime, "HH:mm");
-    var minsAway = moment().diff(moment(firstTimeConvert), "minutes");
-    var tRemain = minsAway % sv.frequency;
+    var firstTimeConvert;
+    var minsAway;
+    var tRemain;
 
-    console.log("First Train Time: " + firstTimeConvert);
-    console.log("Next Train: " + minsAway);
+    // console.log("First Train Time: " + firstTimeConvert);
+    // console.log("Next Train: " + minsAway);
 
-    var nextArrival = moment().add(minsAway, "minutes");
-    console.log("Next Arrival: " + nextArrival);
+    var nextArrival;
+    //console.log("Next Arrival: " + nextArrival);
 
-    var sv = snapshot.val();
+    var sv;
     var rightNow = moment();
 
     console.log("CURRENT TIME: " + moment(rightNow).format("hh:mm"));
@@ -82,8 +82,8 @@ $(document).ready(function() {
         }
 
         clearFields();
-        nextArrivalTime();
-        minutesAway();
+        // nextArrivalTime();
+        // minutesAway();
 
         // Closing of on click 
     });
@@ -99,6 +99,13 @@ $(document).ready(function() {
 
     	// Function to calc Next Arrival
     	function nextArrivalTime() {
+
+    		var firstTimeConvert = moment(sv.firstTime, "HH:mm");
+    		var minsAway = moment().diff(moment(firstTimeConvert), "minutes");
+    		var tRemain = minsAway % sv.frequency;
+    		var nextArrival = moment().add(minsAway, "minutes");
+    			console.log("Next Arrival: " + nextArrival);
+
     		if (moment(rightNow).isBefore(firstTimeConvert)) {
     			nextArrival = moment(sv.firstTime, "minutes");
     			console.log(nextArrival);
@@ -113,6 +120,9 @@ $(document).ready(function() {
     			nextArrival = moment().add(minsAway, "minutes");
     			console.log(nextArrival);
     		}
+
+    		console.log("First Train Time: " + firstTimeConvert);
+    		console.log("Next Train: " + minsAway);
 
     	}
 

@@ -1,3 +1,5 @@
+https://valarier.github.io/train-scheduler/
+
 Firebase Assignment - Train Scheduler 
 
 ### Instructions
@@ -17,3 +19,7 @@ Firebase Assignment - Train Scheduler
   * Code this app to calculate when the next train will arrive; this should be relative to the current time.
   
   * Users from many different machines must be able to view same train times.
+
+### BONUS
+
+* Have the minutes until next arrival refresh over time

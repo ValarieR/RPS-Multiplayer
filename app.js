@@ -103,7 +103,7 @@ $(document).ready(function() {
     		}
     	};
 	
-
+	function dbRef(){
     // Function to add all the data to Firebase
     database.ref('/Trains').orderByChild("dateAdded").limitToLast(3).on("child_added", function(snapshot) {
 
@@ -113,20 +113,22 @@ $(document).ready(function() {
     	nextArrivalTime();
     	updateTable();
 
-    });
+    	})
+	};
 
     // Function to update table
 
     function refreshTableInfo() {
 
+    	console.log("working");
+
     	$("#input-table-body").empty();
 
-    	nextArrivalTime();
-    	updateTable();
+    	dbRef();
     }
 
     // call to run a specific function every 30 seconds
-    setInterval(function(){ refreshTableInfo 
+    setInterval(function(){ refreshTableInfo() 
     	}, 30000);
 
 
@@ -167,5 +169,8 @@ $(document).ready(function() {
         $("#input-table-body").append(tTr);
     };
 
+    // Call the fnc to populate the table
+    dbRef();
+    
     // Closing of doc ready
 });

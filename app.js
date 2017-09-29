@@ -72,16 +72,7 @@ $(document).ready(function() {
         // Closing of on click 
     });
 
-
-	
-
-    // Function to add all the data to Firebase
-    database.ref('/Trains').orderByChild("dateAdded").limitToLast(3).on("child_added", function(snapshot) {
-
-    	sv = snapshot.val();
-    	console.log(sv);
-
-    	// Function to calc Next Arrival
+    // Function to calc Next Arrival
     	function nextArrivalTime() {
 
     		firstTimeConvert = moment(sv.firstTime, "HH:mm");
@@ -110,10 +101,40 @@ $(document).ready(function() {
     			nextArrival = moment().add(minsAway, "minutes");
     			console.log("Next Arr Calc: " + nextArrival);
     		}
-    	}
+    	};
+	
+
+    // Function to add all the data to Firebase
+    database.ref('/Trains').orderByChild("dateAdded").limitToLast(3).on("child_added", function(snapshot) {
+
+    	sv = snapshot.val();
+    	console.log(sv);
+
+    	nextArrivalTime();
+    	updateTable();
+
+    });
+
+    // Function to update table
+
+    function refreshTableInfo() {
+
+    	$("#input-table-body").empty();
+
+    	nextArrivalTime();
+    	updateTable();
+    }
+
+    // call to run a specific function every 30 seconds
+    setInterval(function(){ refreshTableInfo 
+    	}, 30000);
 
 
-	// Functions for populating the table
+	//Function for table that can be called on interval to refresh table
+
+	function updateTable() {
+
+		// populating the table
 		var tTr = $("<tr>");
 
         var tTd = $("<td>");
@@ -144,7 +165,7 @@ $(document).ready(function() {
 
         //Append New rows to employee tables body
         $("#input-table-body").append(tTr);
-    });
+    };
 
     // Closing of doc ready
 });

@@ -104,7 +104,7 @@ $(document).ready(function() {
     	};
 	
 	function dbRef(){
-    // Function to add all the data to Firebase
+    Function to add all the data to Firebase
     database.ref('/Trains').orderByChild("dateAdded").limitToLast(3).on("child_added", function(snapshot) {
 
     	sv = snapshot.val();
@@ -160,10 +160,10 @@ $(document).ready(function() {
         tTr.append(tTd);
         console.log(nextArrival);
 
-        tTd = $("<td>");
-        tTd.append(minsAway);
-        tTr.append(tTd);
-        console.log(minsAway);
+        // tTd = $("<td>");
+        // tTd.append(minsAway);
+        // tTr.append(tTd);
+        // console.log(minsAway);
 
         //Append New rows to employee tables body
         $("#input-table-body").append(tTr);

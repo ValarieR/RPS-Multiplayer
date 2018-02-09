@@ -46,10 +46,10 @@ $(document).ready(function() {
 
 
         // logs to be sure the above worked
-        console.log("Train: " + name);
-        console.log("Dest: " + destination);
-        console.log("First Depart: " + firstTime);
-        console.log("How Often: " + frequency);
+        // console.log("Train: " + name);
+        // console.log("Dest: " + destination);
+        // console.log("First Depart: " + firstTime);
+        // console.log("How Often: " + frequency);
 
         // Firebase Info
         database.ref('/Trains').push({
@@ -104,7 +104,7 @@ $(document).ready(function() {
     	};
 	
 	function dbRef(){
-    Function to add all the data to Firebase
+    //Function to add all the data to Firebase
     database.ref('/Trains').orderByChild("dateAdded").limitToLast(3).on("child_added", function(snapshot) {
 
     	sv = snapshot.val();
